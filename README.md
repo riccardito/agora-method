@@ -19,7 +19,7 @@ This repository is the method layer of a private clinical information system, bu
 | Operating corpus | **8 skills + 9 policies**, 6 370 lines, in use since May 2026 |
 | Domain share of the corpus | **0.0 %** (the raw copy: 1.06 %, 81 lines naming the parent product's domain) |
 | Checks | **6**, each a script with an exit code, all green in CI |
-| Clone to green demo | **CLONE_TO_GREEN** on a fresh machine (target: under 10 minutes) |
+| Clone to green demo | **17 s** on a fresh CI runner, install included; 11 s locally (target: under 10 minutes) |
 | Tests | 41, 93 % line coverage |
 
 The domain share is measured by a classifier that sorts every line into *agora*, *domain*, *layout*, *stack* or *neutral*. The publish rule is zero domain lines, and CI enforces it.
