@@ -2,11 +2,11 @@ from agora_checks import record_consistency as rc
 
 
 def test_a_hand_edit_to_a_generated_block_is_drift_and_fix_restores_it(mini, capsys):
-    readme = mini / "README.md"
+    readme = mini / "docs/method.md"
     text = readme.read_text(encoding="utf-8")
     readme.write_text(text.replace("| **Era** |", "| **Epoch** |"), encoding="utf-8")
     assert rc.run(mini) == 1
-    assert "tier-table: README.md differs" in capsys.readouterr().out
+    assert "tier-table: docs/method.md differs" in capsys.readouterr().out
     assert rc.run(mini, fix=True) == 0
     assert rc.run(mini) == 0
     assert readme.read_text(encoding="utf-8") == text

@@ -57,9 +57,22 @@ it keeps a gate of its own.
 Work is planned in nested tiers: a Vision and a Mission that are restated rather than
 closed, Eras that group several Goals into a chapter, Goals with success criteria,
 Sub-goals that end in one commit, and the Session itself. A Milestone is an event, not
-a tier: it fires when a Goal's criteria are met. The full table is generated from
-[`agora/vocabulary.yaml`](../agora/vocabulary.yaml) into the README and into the
-orchestrator skill.
+a tier: it fires when a Goal's criteria are met. The table below is generated from
+[`agora/vocabulary.yaml`](../agora/vocabulary.yaml), here and in the orchestrator skill;
+edit the source, not the table. *Haleluja* is the parent's name for the Milestone ceremony.
+
+<!-- rc:tier-table -->
+| Tier | Granularity | Closes with |
+|---|---|---|
+| Vision → Mission | forever / multi-year | re-stated, never closed |
+| **Era** | several Goals — a themed chapter | the `New Era` event |
+| **Goal** | weeks–months | success criteria met → a Milestone |
+| **Sub-goal** | hours–days | one conventional commit |
+| **Session** | a work window | a two-way retro |
+| **Milestone** *(an event, not a tier)* | when its Goals close | tag + push + CI-green (the Haleluja) |
+| **Arc** *(a movement, not a tier)* | a named multi-session movement inside an Era — phases + a paper + a ledger Issue | the `Arc-close` event: its paper written, its ledger emptied — no tag of its own (its Goals fired their own Halelujas) |
+| **North star** *(an orientation, not a tier)* | a named horizon for a topic / design line — never committed | never closed — orients decisions ("closer or farther?"); retired only by explicit ruling |
+<!-- /rc:tier-table -->
 
 The planning truth lives in the issue tracker. `COMPASS.md` is a cache of it,
 re-verified at every start. `THREADS.md` holds work not yet big enough for an Issue;
@@ -81,8 +94,10 @@ anything it classifies the lesson:
   down as a judgment, and explicitly not as a rule.
 
 The organising constraint behind the classification: *a mechanism the system calls
-survives; a mechanism a human must remember does not.* Most of the six checks here
-started as a prose rule that failed twice.
+survives; a mechanism a human must remember does not.* Most of the seven checks here
+started as a prose rule that failed twice. The newest is the clearest case: a reviewer
+pointed out that the corpus names hundreds of things this repository does not ship, so
+that observation became `shipped-refs`, a count that may only fall.
 
 The prose-mass ratchet holds the other end. A skill that keeps absorbing incidents
 grows until nobody reads it; the ratchet lets each file shrink freely and grow only by
@@ -117,17 +132,8 @@ a heading. Each was rewritten to a neutral example with the same lesson. The dom
 check confirms the result line by line; the parent's product names are listed in
 [`agora/domain-terms.yaml`](../agora/domain-terms.yaml) only as hashes.
 
-What you will still meet:
+What you will still meet is listed in the next section. Two kinds of name need no table:
 
-- **`flask agora …` commands** — about fifty of them (`baton`, `reconcile`,
-  `retro-context`, `write close`, `capture`, …). They are the parent's substrate CLI and
-  are described here, not shipped. This repository ships `agora_checks`: the six checks,
-  and the session writers (`open_session`, `log`, `tick`, `close`, `render_index`) plus
-  the baton reader that `make demo` drives.
-- **Skill names that are not here** — `/fixbug`, `/implement-story`, `/check-page` and
-  others are the parent's build and doctor skills. A child writes its own.
-- **`US-AGORA-NNN` and `#NNN`** — stories and Issues in the parent's private tracker,
-  kept as provenance so a reader can see that every rule has a recorded reason.
 - **Era and Arc names** — *La Paz* was the parent's Era for giving every entity a home
   in the interface; *La Obra* is the current one. The *Themelion-Arc* (Greek
   *themelion*, a foundation) was a five-phase cleanup inside La Paz, the *Hub-Arc* an
@@ -135,6 +141,53 @@ What you will still meet:
 - **The ceremony words** — the *Haleluja* is the Milestone ceremony; the *Schulterblick*
   (German for the glance over the shoulder before leaving a seat) is the retrospective
   check before closing any chapter.
+
+## Referenced but not shipped
+
+The corpus still names parts of the project it came from. The `shipped-refs` check counts
+them, 859 citations today, and holds the count with a ratchet that may only fall:
+
+| Kind | Citations | What it is |
+|---|---:|---|
+| `flask agora …` commands | 221 | the parent's substrate CLI, 59 commands |
+| skills not in this repository | 51 | the parent's build and doctor skills, 12 of them |
+| `US-AGORA-NNN` | 288 | stories in the parent's tracker, one per mechanism |
+| `session YYYY-MM-DD` | 188 | the parent session where a rule was learned |
+| paths (`app/`, `scripts/`, `docs/`, `tests/`) | 111 | the parent's code and documents |
+
+The story ids and session dates are provenance, kept deliberately: they show that each
+rule has a recorded reason. The commands and skills are the part a reader trips over, so
+here is what the most cited ones do in the parent, and what ships in their place.
+
+| Command | What it does in the parent | Here |
+|---|---|---|
+| `baton` | reads the last session's hand-off and verifies every pointer in it | `session.read_baton` |
+| `open` | opens a session file from fields, refusing a second open session | `session.open_session` |
+| `write close` · `write index` | close a session once its paper is written; render the index | `session.close` · `session.render_index` |
+| `write evidence --kind phase-gate` | ticks a plan box and records the user's nod in one act | `session.tick` |
+| `retro-context` | collects a closing session's evidence for the close-out paper | — |
+| `capture` | files an improvement idea on the current improvement round | — |
+| `plan` · `handoff` | load a planned session's scope; read back an unattended run's checklist | — |
+| `state-check` | validates every registry-shaped state file | the `frontmatter` check, in part |
+| `reconcile` | compares the planning cache with the issue tracker and the git tags | — |
+| `regen` · `stats dump` | regenerate every derived artefact in dependency order | `record-consistency --fix` |
+| `preflight` · `ci-local` · `gate` | run the push gate locally, CI's test job locally, one gate with its verdict | `make check` |
+| `milestone` · `batches` | check a milestone's scoping; open its batch Issues | — |
+| `board` · `write xp-entry` | the skills board; one graded experience entry | — |
+| `env` · `devlink` · `verify-fetch` | check the dev server and database; mint and follow a login link | — |
+| the other `write …` subcommands | the only writer of each state file: threads, plans, ledgers | — |
+
+| Skill | What it does in the parent |
+|---|---|
+| `/fixbug` | diagnoses and fixes a bug, with a failing test first |
+| `/implement-story` | builds a user story end to end, from a written plan |
+| `/new-story` · `/update-story` · `/feature-plan` | write a story; reconcile a changed one; decompose a feature into a research paper and stories |
+| `/iterate` | derives a manual test plan and triages feedback |
+| `/check-page` · `/check-ui-entity` | audit one page's structure; audit one entity's whole surface |
+| `/wiki` · `/check-coverage` · `/manage-translations` · `/selenium` | doctors for the wiki, test coverage, translations and the browser suite |
+| `/deploy` | sets up, deploys and verifies the application |
+
+A child writes its own build skills; the eight here are the ones that run the method.
 
 ## What a child takes
 

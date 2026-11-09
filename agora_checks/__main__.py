@@ -9,7 +9,7 @@ import argparse
 import sys
 from pathlib import Path
 
-from . import domain_share, frontmatter, links, prose_mass, record_consistency, secrets
+from . import domain_share, frontmatter, links, prose_mass, record_consistency, secrets, shipped_refs
 from .common import find_root
 
 CHECKS = {
@@ -18,6 +18,8 @@ CHECKS = {
     "prose-mass": lambda root, a: prose_mass.run(root, update=a.update_baseline,
                                                  allow_growth=a.allow_growth or []),
     "domain-share": lambda root, a: domain_share.run(root, report=a.report),
+    "shipped-refs": lambda root, a: shipped_refs.run(root, update=a.update_baseline,
+                                                     allow_growth=a.allow_growth or [], report=a.report),
     "links": lambda root, a: links.run(root),
     "secrets": lambda root, a: secrets.run(root),
 }
@@ -28,10 +30,12 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("check", choices=[*CHECKS, "all"])
     ap.add_argument("--root", type=Path, help="repository root (default: nearest .claude/ above cwd)")
     ap.add_argument("--fix", action="store_true", help="record-consistency: rewrite generated blocks")
-    ap.add_argument("--report", action="store_true", help="domain-share: print the per-file table")
-    ap.add_argument("--update-baseline", action="store_true", help="prose-mass: record the current mass")
-    ap.add_argument("--allow-growth", action="append", metavar="SKILL",
-                    help="prose-mass: let this skill's baseline grow (repeatable)")
+    ap.add_argument("--report", action="store_true",
+                    help="domain-share: the per-file table; shipped-refs: the distinct references")
+    ap.add_argument("--update-baseline", action="store_true",
+                    help="prose-mass / shipped-refs: record the current counts")
+    ap.add_argument("--allow-growth", action="append", metavar="NAME",
+                    help="prose-mass: a skill, shipped-refs: a kind, whose baseline may grow (repeatable)")
     a = ap.parse_args(argv)
     root = (a.root or find_root()).resolve()
     names = list(CHECKS) if a.check == "all" else [a.check]

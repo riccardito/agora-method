@@ -12,7 +12,7 @@ facts:
     mode: generated
     generator: tier_table
     source: agora/vocabulary.yaml
-    targets: [.claude/skills/agora/SKILL.md, README.md]
+    targets: [.claude/skills/agora/SKILL.md, docs/method.md]
 
   - id: skill-table
     fact: the skill table (name, level, role, epithet) -- read from each SKILL.md

@@ -22,13 +22,13 @@ writes its own `CLAUDE.md` sections for its product, and starts a session.
   paper at one gate. Never open a second session on top of an open one.
 - **The organising constraint:** a mechanism the orchestrator calls survives; a
   mechanism a human must remember does not. Prefer a check over a rule.
-- **The checks:** `make check` runs all six (`python -m agora_checks all`). Each
+- **The checks:** `make check` runs all seven (`python -m agora_checks all`). Each
   prints `[FAIL]` lines and a summary; the exit code is the verdict.
 
 ## The planning vocabulary
 
 The tier table is generated from [`agora/vocabulary.yaml`](agora/vocabulary.yaml)
-into the orchestrator skill and the README; see the `## Goal vocabulary` section of
+into the orchestrator skill and `docs/method.md`; see the `## Goal vocabulary` section of
 [`.claude/skills/agora/SKILL.md`](.claude/skills/agora/SKILL.md).
 
 ## Policies
