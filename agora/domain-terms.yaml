@@ -1,0 +1,82 @@
+# Domain-share vocabulary -- the measuring method, as data.
+#
+# A line takes the FIRST class whose patterns match it: agora, domain, layout,
+# stack, else neutral. `<skills>` expands to `skill_names`. The domain class is
+# the vocabulary of the product this corpus was extracted from (a clinical
+# information system); a child replaces it with its own parent's vocabulary.
+#
+# The product's own names are not written here. Each is listed as the SHA-256
+# of its lower-cased spelling; the check hashes every word of the corpus.
+
+skill_names: [agora, check-coverage, check-page, check-ui-entity, deploy, design, document,
+              feature-plan, fixbug, implement-story, inspect-pipeline, iterate, learn, level,
+              manage-translations, new-story, plaza, selenium, update-story, wiki, write]
+
+private_terms_sha256:
+  - a1328c633b67e3f8b8e261c8684d0cc54944b4a97b467af24a612ff65b7d1937
+  - 8653057a4b57183ce71278ca80dbd82a61196fa182652f4cba355614b768d063
+  - f24c4023f4c6acd0f155e105203241f37f25d252fdda1ce2dde5902f29fa13fa
+  - f7d6e4bf52a3b96bc6607d937c1d04ea9f1142dbeb6a03a6dfdd5eba9a0a3807
+  - 5e891eca12ac778b30bb82add5a4434764fef6f5a9cb92fd70c0d106943cf766
+  - 6d6ca7bc23eb151cf2b97d7c589c980555e564c4de33db09a1722471be73b882
+  - 7f31e7109b78eb0ab0f9c33f5092557641368faed092a294465ae02c696eda0d
+
+agora:
+  - 'flask agora'
+  - '\.claude/'
+  - 'AGORA-DECL'
+  - '\bUS-AGORA-\d+'
+  - '\b(UC|RP)-AGORA-\d+'
+  - 'docs/stats\.yaml'
+  - 'flask stats\b'
+  - 'validate_skill_frontmatter'
+  - 'frontmatter lint'
+  - 'check_record_consistency|record[- ]consistency'
+  - 'check_prose_mass|prose[- ]mass'
+  - '\b(COMPASS|THREADS|IMPROVEMENTS|EVENTS|PLANS)(\.md)?\b'
+  - '\bplan_ref\b'
+  - 'sessions/(plans|spawns)'
+  - '\bagora-(landscape|system|declaration|naming|planning-skeleton)\b'
+  - '\bmechanisms\.yaml\b'
+  - '\bexperience\.md\b'
+  - '\bSKILL\.md\b'
+  - '(?<![\w/])/(<skills>)\b'
+  - '\bpolicy-[a-z-]+\b'
+  - '\bagora:(type|tag|disposition|era):'
+  - '\b(4-eye|four-eye)s?\b'
+  - '\b(journal-at-source|shoulder-glance|Schulterblick)\b'
+
+domain:
+  - '\b(Patient|Case|Order|Invoice|Appointment|Diagnosis|Anamnese|Intake|Outtake|Ticket|Employee|Shift|Payslip|Specimen|Vitals|Vitalpoint|Drug|Material|Contact|Doctor|Medic|Consumption|Payroll|Radiology|Physio|Portal|Telegram|Kiosk|Tardoc|Tarmed|TPW|QR-Bill|MWST|AHV|ICD|DICOM|FHIR|HL7|LIS|clinic|clinical|lab|finance|Fibu)s?\b'
+  - '(Clinic Hub|Admin Hub|Katalog|Therapy Hub|User Hub|Home Hub|HUB_PAGE_REGISTRY|hub_pages)'
+  - '(?<![\w.-])/(clinic|finance|lab|physio|home|settings|server-config|data|calendar|employees|portal)\b'
+  - '\b(check_no_fuzzy|check_css_tokens|check_entity_registration|check_leaf_class|check_gettext_in_js)\b'
+  - '(DashboardUtils|modal_engine\.js|alpine_mixins\.js|layout\.html|components\.html|tokens\.css|premium_select_field|filter_shell|frag-wrap|htmx_success|--tc-seed|Easepick|TAG_ENTITIES|TYPE_ENTITIES|DETAIL_ENTITIES|_DEFAULT_ROLES|_TEST_COLLECTIONS|BaseDocument|PyObjectId|sanitize_value|_parse_update_data|resolve_delete|permission_required|server_config|ui-pages\.yaml|wiki_seeds)'
+  - 'app/(routes|models|templates|static|chat|wiki_seeds|telegram|dicom|translations)/[A-Za-z_/]+'
+  - '\b(Swiss|Schweiz|CHF|Rappen)\b'
+  - '\bcreate_(patient|case|order|invoice|appointment|note|diagnosis|employee|session)\b'
+
+layout:
+  - '\bapp/[a-z_/]*(\.py)?\b'
+  - '\btests/[a-z_/]*'
+  - '\bscripts/[a-z_]+\.py\b'
+  - 'docs/requirements/'
+  - 'docs/implementation-plans/'
+  - 'docs/references/(ui|research|strategy)/'
+  - '\b(US|UC|RP)-(?!AGORA-)[A-Z][A-Z0-9]+-\d+'
+  - '\bWF-\d+\b'
+  - '\bQC-[A-Z]+-\d+'
+  - '\bGLOSS-'
+  - '\b[a-z_]+\.html\b'
+  - '\b[a-z_]+\.py#[a-z_]+'
+  - '\b(actors|glossary)\.md\b'
+  - '\bui_pages\b'
+
+stack:
+  - '\b(MongoDB|Mongo|PyMongo|mongosh|Flask(-[A-Za-z]+)?|Werkzeug|Jinja2?|htmx|Alpine(\.js)?|Selenium|WebDriver|Cloudflare|cloudflared|Waitress|Gunicorn|Elasticsearch|WeasyPrint|Plotly|FullCalendar|IMask|polib|Pydantic)\b'
+  - '\b(pybabel|babel\.cfg|messages\.pot|lazy_gettext|gettext|msgid|msgstr)\b|\.po\b|\.mo\b'
+  - '\bhx-[a-z-]+'
+  - '\bx-(data|show|model|for|init)\b'
+  - '\bruff\b'
+  - '\bdocker(-compose)?\b'
+  - '\bconda\b'

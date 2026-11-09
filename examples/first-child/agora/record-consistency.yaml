@@ -1,0 +1,16 @@
+# The child's registry: the two generated facts it inherits from the method.
+
+facts:
+  - id: tier-table
+    fact: the planning-tier table
+    mode: generated
+    generator: tier_table
+    source: agora/vocabulary.yaml
+    targets: [.claude/skills/agora/SKILL.md]
+
+  - id: skill-table
+    fact: the skill table, read from each SKILL.md
+    mode: generated
+    generator: skill_table
+    source: .claude/skills
+    targets: [.claude/skills/README.md]

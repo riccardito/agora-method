@@ -1,0 +1,92 @@
+# Record-consistency registry -- one fact, one home, one direction.
+#
+# Every fact that lives in more than one file declares here which copy is the
+# SOURCE and which copies are DERIVED. `python -m agora_checks record-consistency`
+# fails when a derived copy disagrees. Which copy is the source is a ruling per
+# fact; the registry records it, the check cannot make it. A new duplicated fact
+# lands here in the same commit that creates its second copy.
+
+facts:
+  - id: tier-table
+    fact: the planning-tier table (Vision -> North star)
+    mode: generated
+    generator: tier_table
+    source: agora/vocabulary.yaml
+    targets: [.claude/skills/agora/SKILL.md, README.md]
+
+  - id: skill-table
+    fact: the skill table (name, level, role, epithet) -- read from each SKILL.md
+    mode: generated
+    generator: skill_table
+    source: .claude/skills
+    targets: [.claude/skills/README.md]
+
+  - id: policy-table
+    fact: the policy table (name, domain, status, title) -- read from each policy file
+    mode: generated
+    generator: policy_table
+    source: .claude/policies
+    targets: [.claude/policies/README.md]
+
+  - id: policy-four-eyes
+    fact: the policy-four-eyes TL;DR, mirrored into the always-loaded CLAUDE.md
+    mode: verbatim
+    source: .claude/policies/policy-four-eyes.md
+    heading: TL;DR
+    targets: [CLAUDE.md]
+
+  - id: policy-shoulder-glance
+    fact: the policy-shoulder-glance TL;DR, mirrored into the always-loaded CLAUDE.md
+    mode: verbatim
+    source: .claude/policies/policy-shoulder-glance.md
+    heading: TL;DR
+    targets: [CLAUDE.md]
+
+  - id: policy-skill-authoring
+    fact: the policy-skill-authoring TL;DR, mirrored into the always-loaded CLAUDE.md
+    mode: verbatim
+    source: .claude/policies/policy-skill-authoring.md
+    heading: TL;DR
+    targets: [CLAUDE.md]
+
+  - id: policy-skill-progression
+    fact: the policy-skill-progression TL;DR, mirrored into the always-loaded CLAUDE.md
+    mode: verbatim
+    source: .claude/policies/policy-skill-progression.md
+    heading: TL;DR
+    targets: [CLAUDE.md]
+
+  - id: policy-skill-routing
+    fact: the policy-skill-routing TL;DR, mirrored into the always-loaded CLAUDE.md
+    mode: verbatim
+    source: .claude/policies/policy-skill-routing.md
+    heading: TL;DR
+    targets: [CLAUDE.md]
+
+  - id: policy-spawns
+    fact: the policy-spawns TL;DR, mirrored into the always-loaded CLAUDE.md
+    mode: verbatim
+    source: .claude/policies/policy-spawns.md
+    heading: TL;DR
+    targets: [CLAUDE.md]
+
+  - id: policy-commit-discipline
+    fact: the policy-commit-discipline TL;DR, mirrored into the always-loaded CLAUDE.md
+    mode: verbatim
+    source: .claude/policies/policy-commit-discipline.md
+    heading: TL;DR
+    targets: [CLAUDE.md]
+
+  - id: policy-issue-templates
+    fact: the policy-issue-templates TL;DR, mirrored into the always-loaded CLAUDE.md
+    mode: verbatim
+    source: .claude/policies/policy-issue-templates.md
+    heading: TL;DR
+    targets: [CLAUDE.md]
+
+  - id: policy-documentation
+    fact: the policy-documentation TL;DR, mirrored into the always-loaded CLAUDE.md
+    mode: verbatim
+    source: .claude/policies/policy-documentation.md
+    heading: TL;DR
+    targets: [CLAUDE.md]

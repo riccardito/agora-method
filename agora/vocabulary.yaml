@@ -1,0 +1,46 @@
+# The planning vocabulary -- the source of the tier table.
+# Generated into .claude/skills/agora/SKILL.md and README.md between rc:tier-table
+# markers; `python -m agora_checks record-consistency --fix` rewrites them.
+
+tiers:
+- name: vision-mission
+  kind: tier
+  cell: Vision → Mission
+  granularity: forever / multi-year
+  closes_with: re-stated, never closed
+- name: era
+  kind: tier
+  cell: '**Era**'
+  granularity: several Goals — a themed chapter
+  closes_with: the `New Era` event
+- name: goal
+  kind: tier
+  cell: '**Goal**'
+  granularity: weeks–months
+  closes_with: success criteria met → a Milestone
+- name: sub-goal
+  kind: tier
+  cell: '**Sub-goal**'
+  granularity: hours–days
+  closes_with: one conventional commit
+- name: session
+  kind: tier
+  cell: '**Session**'
+  granularity: a work window
+  closes_with: a two-way retro
+- name: milestone
+  kind: event
+  cell: '**Milestone** *(an event, not a tier)*'
+  granularity: when its Goals close
+  closes_with: tag + push + CI-green (the Haleluja)
+- name: arc
+  kind: movement
+  cell: '**Arc** *(a movement, not a tier)*'
+  granularity: a named multi-session movement inside an Era — phases + a paper + a ledger Issue
+  closes_with: 'the `Arc-close` event: its paper written, its ledger emptied — no tag of its own (its Goals fired their own
+    Halelujas)'
+- name: north-star
+  kind: orientation
+  cell: '**North star** *(an orientation, not a tier)*'
+  granularity: a named horizon for a topic / design line — never committed
+  closes_with: never closed — orients decisions ("closer or farther?"); retired only by explicit ruling
