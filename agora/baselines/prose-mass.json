@@ -17,6 +17,12 @@
     "record": 0,
     "total": 222
   },
+  "feature-plan": {
+    "incident": 7,
+    "lived": 1,
+    "record": 0,
+    "total": 411
+  },
   "inspect-pipeline": {
     "incident": 0,
     "lived": 0,
@@ -35,11 +41,23 @@
     "record": 10,
     "total": 516
   },
+  "new-story": {
+    "incident": 4,
+    "lived": 0,
+    "record": 0,
+    "total": 207
+  },
   "plaza": {
     "incident": 6,
     "lived": 0,
     "record": 14,
     "total": 538
+  },
+  "update-story": {
+    "incident": 3,
+    "lived": 1,
+    "record": 0,
+    "total": 310
   },
   "write": {
     "incident": 4,

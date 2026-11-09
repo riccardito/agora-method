@@ -1,7 +1,8 @@
 """`make demo` -- one Agora session, start to end, in a throwaway child.
 
 1. Build a child in a temporary directory: the method layer from this repository
-   (`.claude/`, `agora/`) with `examples/first-child/` laid over it.
+   (`.claude/`, `agora/`, the catalogue templates) with `examples/first-child/` laid
+   over it. The child measures its own shipped-refs baseline once, at birth.
 2. --start: read the baton the last closed session left; open a session from it.
 3. Two phases, each closed at a gate that records the user's nod.
 4. --end: the close-out paper (summary, baton, retrospective), the index re-rendered.
@@ -33,7 +34,11 @@ def build_child(dest: Path) -> Path:
         if f.name not in ("_TEMPLATE.md", "EVENTS.md", "README.md", "IMPROVEMENTS.md", "PLANS.md",
                           "policy-breaches.md"):
             f.unlink()
+    shutil.copytree(REPO / "requirements" / "templates", dest / "requirements" / "templates")
     shutil.copytree(REPO / "examples" / "first-child", dest, dirs_exist_ok=True)
+    # The copied skills cite the method's own stories, which live in this repository's
+    # catalogue, not the child's: the child measures what its copy points at, once.
+    checks(["shipped-refs", "--root", str(dest), "--update-baseline", "--allow-growth", "story"])
     return dest
 
 

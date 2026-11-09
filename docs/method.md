@@ -191,7 +191,8 @@ A child writes its own build skills; the eight here are the ones that run the me
 
 ## What a child takes
 
-A child copies `.claude/`, `agora/`, `agora_checks/` and `CLAUDE.md`. Then it writes
+A child copies `.claude/`, `agora/`, `agora_checks/`, `CLAUDE.md` and the catalogue's
+`requirements/templates/`, and measures its own shipped-refs baseline once. Then it writes
 three things of its own. The product half of `CLAUDE.md`. A COMPASS with a first Era and
 Goal. And, if its corpus came from somewhere, its parent's vocabulary for the domain check.
 [`examples/first-child/`](../examples/first-child/) is the smallest such child, and

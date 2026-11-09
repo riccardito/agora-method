@@ -9,7 +9,16 @@ import argparse
 import sys
 from pathlib import Path
 
-from . import domain_share, frontmatter, links, prose_mass, record_consistency, secrets, shipped_refs
+from . import (
+    catalogue,
+    domain_share,
+    frontmatter,
+    links,
+    prose_mass,
+    record_consistency,
+    secrets,
+    shipped_refs,
+)
 from .common import find_root
 
 CHECKS = {
@@ -22,6 +31,7 @@ CHECKS = {
                                                      allow_growth=a.allow_growth or [], report=a.report),
     "links": lambda root, a: links.run(root),
     "secrets": lambda root, a: secrets.run(root),
+    "catalogue": lambda root, a: catalogue.run(root),
 }
 
 

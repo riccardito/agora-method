@@ -17,7 +17,8 @@ shape each level requires ([`policy-skill-progression`](../policies/policy-skill
 
 ## The skills
 
-These are the eight meta-skills: the ones that run the method itself. A child
+These are the eight meta-skills that run the method itself, and the three
+pipeline skills that write the requirements catalogue in `requirements/`. A child
 project adds its own build and doctor skills beside them. Generated from each
 skill's frontmatter (record-consistency fact `skill-table`).
 
@@ -27,10 +28,13 @@ skill's frontmatter (record-consistency fact `skill-table`).
 | [`/agora`](agora/SKILL.md) | hardened | the mayor | Socrates — the dialectician |
 | [`/design`](design/SKILL.md) | used | the Themelion conductor — red-flag code-design review, Arc phase-③ cleanup conducting, post-cleanup QC |  |
 | [`/document`](document/SKILL.md) | used | the scribe |  |
+| [`/feature-plan`](feature-plan/SKILL.md) | hardened | the cartographer | Euclid — the surveyor who lays out the grid |
 | [`/inspect-pipeline`](inspect-pipeline/SKILL.md) | hardened | the registrar | Diogenes — the iconoclast with the lamp |
 | [`/learn`](learn/SKILL.md) | reference | the tutor | Theophrastus — the careful classifier |
 | [`/level`](level/SKILL.md) | reference | the assessor | Solon — the lawgiver who ranks the citizens |
+| [`/new-story`](new-story/SKILL.md) | used | the playwright |  |
 | [`/plaza`](plaza/SKILL.md) | used | the reformer |  |
+| [`/update-story`](update-story/SKILL.md) | used | the mediator |  |
 | [`/write`](write/SKILL.md) | used | the artefact author — gather · brief · produce · measured style pass |  |
 <!-- /rc:skill-table -->
 
@@ -46,8 +50,10 @@ skill's frontmatter (record-consistency fact `skill-table`).
 /plaza (a self-improvement round) ── /document --policy · /learn · /level
 /write  (any artefact to a named form and voice)
 /design (code-design review and cleanup conducting)
+
+/feature-plan ── /new-story ── /update-story   (the requirements catalogue)
 ```
 
-Skill names other than these eight appear in the corpus (`/fixbug`,
+Skill names other than these eleven appear in the corpus (`/fixbug`,
 `/implement-story`, `/check-page`, …). They are the parent project's build and
 doctor skills, left as provenance; a child writes its own.

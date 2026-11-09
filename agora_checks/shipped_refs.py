@@ -6,7 +6,7 @@ because each is a promise with nothing behind it. This check counts them per kin
 
   command   a `flask …` CLI command (the parent's substrate; none ships here)
   skill     a `/skill` that has no `.claude/skills/<name>/` directory here
-  story     a `US-AGORA-NNN` id from the parent's tracker
+  story     a `US-AGORA-NNN` id from the parent's tracker, unless `requirements/` ships that story
   session   a `session YYYY-MM-DD` citation of a parent session file
   path      a repository path (`app/`, `scripts/`, `tests/`, `docs/`) that does not exist here
 
@@ -38,11 +38,13 @@ def scan(root: Path) -> dict[str, Counter]:
     shipped = {p.name for p in (root / ".claude" / "skills").iterdir() if p.is_dir()}
     missing = sorted(set(terms.get("skill_names", [])) - shipped, key=len, reverse=True)
     skill = re.compile(r"(?<![\w/`.-])/(" + "|".join(map(re.escape, missing)) + r")\b") if missing else None
+    catalogued = {m.group(0) for p in (root / "requirements" / "stories").rglob("US-*.md")
+                  for m in [STORY.match(p.name)] if m}
     found = {k: Counter() for k in KINDS}
     for p in corpus(root):
         for line in p.read_text(encoding="utf-8").splitlines():
             found["command"].update("flask " + m for m in COMMAND.findall(line))
-            found["story"].update(STORY.findall(line))
+            found["story"].update(s for s in STORY.findall(line) if s not in catalogued)
             found["session"].update(SESSION.findall(line))
             if skill:
                 found["skill"].update("/" + m for m in skill.findall(line))

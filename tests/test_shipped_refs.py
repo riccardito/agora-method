@@ -22,6 +22,15 @@ def test_shipped_things_and_placeholders_are_not_counted(mini):
     assert shipped_refs.scan(mini) == before
 
 
+def test_a_catalogued_story_is_shipped(mini):
+    append(mini, "per US-AGORA-998")
+    before = sum(shipped_refs.scan(mini)["story"].values())
+    story = mini / "requirements/stories/x/US-AGORA-998-shipped-here.md"
+    story.parent.mkdir(parents=True)
+    story.write_text("---\nid: US-AGORA-998\n---\n", encoding="utf-8")
+    assert sum(shipped_refs.scan(mini)["story"].values()) == before - 1
+
+
 def test_growth_reds_and_falling_passes(mini, capsys):
     assert shipped_refs.run(mini) == 0
     append(mini, "`flask agora frobnicate`")

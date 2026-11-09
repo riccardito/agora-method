@@ -75,7 +75,7 @@ def test_the_demo_is_green(capsys):
     demo = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(demo)
     assert demo.main() == 0
-    assert "[agora_checks] 7/7 green" in capsys.readouterr().out
+    assert "[agora_checks] 8/8 green" in capsys.readouterr().out
 
 
 def test_the_child_inherits_the_method_untouched(child):

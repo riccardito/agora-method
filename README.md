@@ -8,7 +8,7 @@
 
 ## What this is, and what you can do with it
 
-The operating layer of an AI-assisted development pipeline, published as a template you can copy into your own project. It is plain files: instructions the agent reads (`.claude/`), state it keeps between sessions, and seven checks that fail the build when the files drift.
+The operating layer of an AI-assisted development pipeline, published as a template you can copy into your own project. It is plain files: instructions the agent reads (`.claude/`), state it keeps between sessions, and eight checks that fail the build when the files drift.
 
 - **Start a project that works this way:** copy four folders, write a short COMPASS, type `/agora --start` in Claude Code.
 - **See one session run:** `make demo` plays a whole session in a throwaway project and checks the result.
@@ -43,7 +43,7 @@ python -m venv .venv && . .venv/bin/activate   # Windows: .venv\Scripts\activate
 make install && make demo
 ```
 
-`make demo` builds a throwaway child project, runs one session from start to end, and then runs all seven checks over the result:
+`make demo` builds a throwaway child project, runs one session from start to end, and then runs all eight checks over the result:
 
 ```
 == --start
@@ -53,7 +53,7 @@ make install && make demo
    Phase 1 ticked -- the nod 'go' is written beside the box, in one act
 == --end
    close-out paper written, status closed, INDEX re-rendered
-[agora_checks] 7/7 green
+[agora_checks] 8/8 green
 [demo] green in 0.8 s
 ```
 
@@ -95,7 +95,7 @@ flowchart TB
         R["four-eyes · shoulder-glance · spawns · commit-discipline · …<br/>TL;DR mirrored verbatim into CLAUDE.md"]
     end
     subgraph L4["Tools and state"]
-        C["agora_checks — seven checks + the session writers"]
+        C["agora_checks — eight checks + the session writers"]
         F[".claude/sessions/ — COMPASS · THREADS · PLANS · IMPROVEMENTS · one file per session"]
     end
     L1 --> L2 --> L3 --> L4
@@ -124,7 +124,7 @@ sequenceDiagram
     U->>A: nod
 ```
 
-## The seven checks
+## The eight checks
 
 | Check | What it holds |
 |---|---|
@@ -135,6 +135,7 @@ sequenceDiagram
 | `shipped-refs` | every command, skill, story and path the corpus names but this repository does not ship is counted; the count may only fall |
 | `links` | every relative link resolves — the check a corpus moved out of its parent needs most |
 | `secrets` | no key, token or private key is committed |
+| `catalogue` | the requirements in `requirements/` hold together: fourteen rules over ids, fields, actors and references, and every story marked done names a test that exists |
 
 Run them with `make check`. Each prints `[FAIL]` lines and one summary; the exit code is the verdict.
 

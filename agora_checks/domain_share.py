@@ -100,7 +100,7 @@ def measure(root: Path, terms: Terms, files: list[Path] | None = None) -> list[F
 
 def run(root: Path, report: bool = False) -> int:
     terms = Terms.load(root / "agora" / "domain-terms.yaml")
-    shares = measure(root, terms)
+    shares = measure(root, terms, corpus(root) + corpus(root, "requirements/**/*.md"))
     total = dict.fromkeys((*CLASSES, "neutral"), 0)
     for s in shares:
         for k, v in s.counts.items():

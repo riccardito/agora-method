@@ -18,7 +18,7 @@ jobs:
         run: python -m pip install -e ".[dev]"
       - name: Lint
         run: python -m ruff check .
-      - name: Agora checks (frontmatter, record consistency, prose mass, domain share, links, secrets)
+      - name: Agora checks (frontmatter, record consistency, prose mass, domain share, shipped refs, links, secrets, catalogue)
         run: python -m agora_checks all
       - name: Tests
         run: python -m pytest --cov --cov-report=term-missing:skip-covered --cov-fail-under=90

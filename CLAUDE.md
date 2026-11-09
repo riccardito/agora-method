@@ -22,8 +22,11 @@ writes its own `CLAUDE.md` sections for its product, and starts a session.
   paper at one gate. Never open a second session on top of an open one.
 - **The organising constraint:** a mechanism the orchestrator calls survives; a
   mechanism a human must remember does not. Prefer a check over a rule.
-- **The checks:** `make check` runs all seven (`python -m agora_checks all`). Each
+- **The checks:** `make check` runs all eight (`python -m agora_checks all`). Each
   prints `[FAIL]` lines and a summary; the exit code is the verdict.
+- **The catalogue:** `requirements/` holds the stories, use cases and quality criteria;
+  `python -m agora_checks catalogue` is its gate. `/feature-plan`, `/new-story` and
+  `/update-story` write it; every story at `tested` names the tests that prove it.
 
 ## The planning vocabulary
 
