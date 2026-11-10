@@ -29,11 +29,11 @@ This repository is the method layer of a private clinical information system, bu
 
 | Measure | Value |
 |---|---|
-| Operating corpus | **8 skills + 9 policies**, 6 370 lines, in use since May 2026 |
+| Operating corpus | **11 skills + 9 policies**, 9 416 lines, in use since May 2026 |
 | Domain share of the corpus | **0.0 %** (the raw copy: 1.06 %, 81 lines naming the parent product's domain) |
-| Checks | **7**, each a script with an exit code, all green in CI |
+| Checks | **8**, each a script with an exit code, all green in CI |
 | Clone to green demo | **17 s** on a fresh CI runner, install included (target: under 10 minutes) |
-| Tests | 46, 93 % line coverage, CI fails under 90 % |
+| Tests | 64, 93 % line coverage, CI fails under 90 % |
 
 ## Quickstart
 
@@ -69,12 +69,13 @@ make install && make demo
 
 The rest of the vocabulary, including the planning tiers, is in [`docs/method.md`](docs/method.md).
 
-## Read this in 10 minutes
+## Read this in 15 minutes
 
 1. [`docs/method.md`](docs/method.md) — the parts and how they connect (5 min)
-2. [`.claude/policies/policy-four-eyes.md`](.claude/policies/policy-four-eyes.md) — one policy, start to end (2 min)
-3. [`agora_checks/domain_share.py`](agora_checks/domain_share.py) — one check, 118 lines (2 min)
-4. `make demo` — one session running (1 min)
+2. [`docs/requirements-engineering.md`](docs/requirements-engineering.md) — one requirement from idea to test, and the check that holds the chain (5 min)
+3. [`.claude/policies/policy-four-eyes.md`](.claude/policies/policy-four-eyes.md) — one policy, start to end (2 min)
+4. [`agora_checks/domain_share.py`](agora_checks/domain_share.py) — one check, 118 lines (2 min)
+5. `make demo` — one session running (1 min)
 
 The orchestrator skill, [`.claude/skills/agora/SKILL.md`](.claude/skills/agora/SKILL.md), is 3 300 lines of operating text and six months of corrections. Read it last, and only the section you need.
 
@@ -135,7 +136,7 @@ sequenceDiagram
 | `shipped-refs` | every command, skill, story and path the corpus names but this repository does not ship is counted; the count may only fall |
 | `links` | every relative link resolves — the check a corpus moved out of its parent needs most |
 | `secrets` | no key, token or private key is committed |
-| `catalogue` | the requirements in `requirements/` hold together: fourteen rules over ids, fields, actors and references, and every story marked done names a test that exists |
+| `catalogue` | the requirements in `requirements/` hold together: fourteen rules over ids, fields, actors and references, and every story marked done names a test that exists — the method is in [`docs/requirements-engineering.md`](docs/requirements-engineering.md) |
 
 Run them with `make check`. Each prints `[FAIL]` lines and one summary; the exit code is the verdict.
 
